@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "838440315681",
+    "firebase_url": "https://consulta-valores-cl.firebaseio.com",
+    "project_id": "consulta-valores-cl",
+    "storage_bucket": "consulta-valores-cl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838440315681:android:9c5f93eba9b2901aafac60",
+        "android_client_info": {
+          "package_name": "cl.talentodigital.consultavalores"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838440315681-v3aspckt51s8vupbe0cgukppdbn4nvob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYeDEf9ySkroGPqIzkpGCsoXUkRQsCw3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838440315681-v3aspckt51s8vupbe0cgukppdbn4nvob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

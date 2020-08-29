@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Consulta Valores</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ingresa_tu_nombre_y_apellido">Ingresa tu nombre y apellido</string>
+    <string name="nombre_y_apellido">Nombre y apellido</string>
+    <string name="ingresa_tu_contrasena">Ingresa tu contraseña</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="registrar">Registrar</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="ingresa_tu_correo_electronico">Ingresa tu correo electrónico</string>
+    <string name="rut">Rut</string>
+    <string name="ingresa_tu_rut">Ingresa tu rut</string>
+    <string name="volver">Volver</string>
+    <string name="confirmar_contrasena">Confirmar contraseña</string>
+</resources>
