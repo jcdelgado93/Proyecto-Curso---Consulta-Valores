@@ -7,6 +7,7 @@
     tools:context=".menu_listaValores.ui.MenuFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_logo"
         android:layout_width="@dimen/dp100"
         android:layout_height="@dimen/dp100"
         android:layout_gravity="center"
@@ -19,22 +20,50 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_tasa_desempleo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tasa_de_desempleo_hoy"
+            android:textSize="@dimen/sp18" />
+
+        <Space
+            android:layout_width="@dimen/dp25"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_valor_tasa_desempleo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/tasa_de_desempleo"
+            android:textAlignment="textEnd"
+            android:textSize="@dimen/sp18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_indicadores_economicos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/indicadores_economicos_hoy"
             android:textSize="@dimen/sp18" />
 
+        <Space
+            android:layout_width="@dimen/dp25"
+            android:layout_height="match_parent" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_calculadora"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp25"
             android:layout_weight="1"
-            android:background="@drawable/rounded_corner_button"
             android:text="@string/calculadora"
-            android:textAllCaps="false"
-            android:textSize="@dimen/sp18"
-            android:textColor="@color/blanco"/>
+            android:textAllCaps="false" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

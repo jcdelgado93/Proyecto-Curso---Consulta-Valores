@@ -11,14 +11,27 @@
         tools:context=".registro.ui.RegisterFragment">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
+            android:id="@+id/iv_logo"
+            android:layout_width="@dimen/dp100"
             android:layout_height="@dimen/dp100"
+            android:layout_gravity="center"
             android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_registro_usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp25"
+            android:text="@string/registro_de_usuario"
+            android:textSize="@dimen/sp24"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
             android:layout_marginTop="@dimen/dp25"
             android:text="@string/nombre_y_apellido"
             android:textSize="@dimen/sp18"
@@ -36,6 +49,7 @@
             android:id="@+id/tv_rut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             android:text="@string/rut"
             android:textSize="@dimen/sp18"
@@ -53,6 +67,7 @@
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             android:text="@string/correo_electronico"
             android:textSize="@dimen/sp18"
@@ -70,6 +85,7 @@
             android:id="@+id/tv_contrasena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             android:text="@string/contrasena"
             android:textSize="@dimen/sp18"
@@ -87,6 +103,7 @@
             android:id="@+id/tv_confirmar_contrasena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             android:text="@string/confirmar_contrasena"
             android:textSize="@dimen/sp18"
@@ -103,6 +120,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -110,21 +128,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginStart="@dimen/dp25"
                 android:layout_weight="1"
                 android:text="@string/registrar"
                 android:textAllCaps="false" />
+
+            <Space
+                android:layout_width="@dimen/dp25"
+                android:layout_height="match_parent" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_volver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp25"
                 android:layout_weight="1"
                 android:text="@string/volver"
                 android:textAllCaps="false" />
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

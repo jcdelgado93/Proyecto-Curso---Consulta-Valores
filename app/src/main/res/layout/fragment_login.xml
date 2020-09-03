@@ -7,6 +7,7 @@
     tools:context=".login.ui.LoginFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_logo"
         android:layout_width="@dimen/dp100"
         android:layout_height="@dimen/dp100"
         android:layout_gravity="center"
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp25"
-        android:text="Inicio de sesión"
+        android:text="@string/inicio_de_sesi_n"
         android:textSize="@dimen/sp24"
         android:textStyle="bold" />
 
@@ -59,6 +60,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -66,30 +68,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp25"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_marginEnd="@dimen/dp10"
             android:layout_weight="1"
-            android:background="@drawable/rounded_corner_button"
             android:text="@string/ingresar"
-            android:textAllCaps="false"
-            android:textColor="@color/blanco"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
+            android:textAllCaps="false" />
+
+        <Space
+            android:layout_width="@dimen/dp25"
+            android:layout_height="match_parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_registrar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
             android:layout_marginEnd="@dimen/dp25"
             android:layout_weight="1"
-            android:background="@drawable/rounded_corner_button"
             android:text="@string/registrar"
-            android:textAllCaps="false"
-            android:textColor="@color/blanco"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
-
+            android:textAllCaps="false" />
     </LinearLayout>
 </LinearLayout>

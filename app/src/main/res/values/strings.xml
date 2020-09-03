@@ -19,4 +19,25 @@
     <string name="tu_ayudante_financiero">Tu ayudante financiero</string>
     <string name="calculadora">Calculadora</string>
     <string name="simbolo_del_dolar">Simbolo del dolar</string>
+    <string name="inicio_de_sesi_n">Inicio de sesión</string>
+    <string name="calculadora">Calculadora</string>
+    <string name="ingrese_el_monto_en_pesos_clp">Ingrese el monto en Pesos (CLP)</string>
+    <string name="comto_a_convertir">Comto a convertir</string>
+    <string name="signo_igual">=</string>
+    <string name="dolar">Dolar</string>
+    <string name="euro">Euro</string>
+    <string name="uf">UF</string>
+    <string name="ivp">IVP</string>
+    <string name="dolar_intercambio">Dolar intercambio</string>
+    <string name="ipc">IPC</string>
+    <string name="utm">UTM</string>
+    <string name="imacec">IMACEC</string>
+    <string name="tpm">TPM</string>
+    <string name="libra_de_cobre">Libra de cobre</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="tasa_de_desempleo">Tasa de desempleo</string>
+    <string name="registro_de_usuario">Registro de usuario</string>
+    <string name="tasa_de_desempleo_hoy">{Tasa de desempleo: hoy}</string>
+    <string name="tasa_de_desempleo">Tasa de desempleo</string>
+    <string name="informaci_n_e_historial_de_valores">Información e historial de valores</string>
 </resources>
