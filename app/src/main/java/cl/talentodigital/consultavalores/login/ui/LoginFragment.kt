@@ -71,7 +71,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun showSuccessLogin() {
-        alert("Login exitoso") //Cambio a siguiente fragment por navigation
+        alert("Login exitoso")
     }
 
     private fun showInvlaidUser() {
@@ -87,6 +87,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             btnIngresar.setOnClickListener {
                 if (validarValoresDelEditText()) {
                     viewModel.ingresarUsuario(etEmail.text.toString(), etContrasena.text.toString())
+                    Navigation.findNavController(it) //TODO: preguntar si va aqui o en el showSuccessLogin()
+                        .navigate(R.id.action_loginFragment_to_menuFragment)
                 }
             }
 

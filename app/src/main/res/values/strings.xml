@@ -14,4 +14,9 @@
     <string name="ingresa_tu_rut">Ingresa tu rut</string>
     <string name="volver">Volver</string>
     <string name="confirmar_contrasena">Confirmar contraseña</string>
+    <string name="indicadores_economicos_hoy">{Indicadores económicos: hoy}</string>
+    <string name="consulta_valores">Consulta valores</string>
+    <string name="tu_ayudante_financiero">Tu ayudante financiero</string>
+    <string name="calculadora">Calculadora</string>
+    <string name="simbolo_del_dolar">Simbolo del dolar</string>
 </resources>

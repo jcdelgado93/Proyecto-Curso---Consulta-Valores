@@ -3,6 +3,7 @@ package cl.talentodigital.consultavalores.registro.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cl.talentodigital.consultavalores.R
 import cl.talentodigital.consultavalores.databinding.FragmentRegisterBinding
@@ -49,7 +50,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     private fun setupLiveData() {
         viewModel.getLiveData()
             .observe(viewLifecycleOwner,
-                { state -> state?.let { handleState(it) } }
+               { state -> state?.let { handleState(it) } }
             )
     }
 

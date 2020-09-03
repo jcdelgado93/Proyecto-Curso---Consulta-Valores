@@ -7,9 +7,20 @@
     tools:context=".login.ui.LoginFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/dp100"
         android:layout_height="@dimen/dp100"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp25"
+        android:text="Inicio de sesión"
+        android:textSize="@dimen/sp24"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_email"
@@ -54,19 +65,31 @@
             android:id="@+id/btn_ingresar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp25"
             android:layout_marginTop="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner_button"
             android:text="@string/ingresar"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_registrar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp25"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner_button"
             android:text="@string/registrar"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>
