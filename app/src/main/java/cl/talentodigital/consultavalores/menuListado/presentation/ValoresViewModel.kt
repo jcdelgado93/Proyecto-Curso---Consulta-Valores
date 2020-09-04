@@ -1,15 +1,16 @@
-package cl.talentodigital.consultavalores.menu_listaValores.presentation
+package cl.talentodigital.consultavalores.menuListado.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cl.talentodigital.consultavalores.menu_listaValores.domain.ValoresRepository
-import cl.talentodigital.consultavalores.menu_listaValores.domain.model.Valores
+import cl.talentodigital.consultavalores.menuListado.domain.ValoresRepository
+import cl.talentodigital.consultavalores.menuListado.domain.ValoresUseCase
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ValoresViewModel(
-    private val repository: ValoresRepository
+    private val useCase: ValoresUseCase
 ) : ViewModel() {
 
     private val liveData = MutableLiveData<ValoresState>()
@@ -20,7 +21,7 @@ class ValoresViewModel(
         liveData.postValue(ValoresState.LoadingListaValores)
         viewModelScope.launch {
             try {
-                val result = repository.obtenerValores()
+                val result = useCase.execute()
                 handleResult(result)
             } catch (exception: Exception) {
                 handlerError(exception)

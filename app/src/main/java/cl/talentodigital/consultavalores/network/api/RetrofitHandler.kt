@@ -1,6 +1,6 @@
 package cl.talentodigital.consultavalores.network.api
 
-import cl.talentodigital.consultavalores.menu_listaValores.data.remote.ApiValores
+import cl.talentodigital.consultavalores.menuListado.data.remote.ApiValores
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,10 +22,10 @@ class RetrofitHandler {
                 .create()
 
             return Retrofit.Builder()
-                .baseUrl("https://mindicador.cl/")
+                .baseUrl("https://mindicador.cl/api")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
         }
 

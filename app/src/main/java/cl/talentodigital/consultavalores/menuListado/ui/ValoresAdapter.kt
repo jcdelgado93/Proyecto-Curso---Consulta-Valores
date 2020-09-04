@@ -1,10 +1,10 @@
-package cl.talentodigital.consultavalores.menu_listaValores.ui
+package cl.talentodigital.consultavalores.menuListado.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cl.talentodigital.consultavalores.databinding.ItemValoresBinding
-import cl.talentodigital.consultavalores.menu_listaValores.domain.model.Valor
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valor
 
 class ValoresAdapter(
     private val valores: List<Valor>

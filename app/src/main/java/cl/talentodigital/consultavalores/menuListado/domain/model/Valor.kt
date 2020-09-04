@@ -1,4 +1,4 @@
-package cl.talentodigital.consultavalores.menu_listaValores.domain.model
+package cl.talentodigital.consultavalores.menuListado.domain.model
 
 data class Valor(
     val codigo: String,

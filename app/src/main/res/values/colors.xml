@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blanco">#FFFFFF</color>
-    <color name="morado">#8000FF</color>
-    <color name="cian">#00E4FF</color>
+    <color name="negro">#000000</color>
+    <color name="violeta">#8E24AA</color>
+    <color name="celeste">#00ACC1</color>
 </resources>

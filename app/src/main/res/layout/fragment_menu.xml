@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".menu_listaValores.ui.MenuFragment">
+    tools:context=".menuListado.ui.MenuFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_logo"

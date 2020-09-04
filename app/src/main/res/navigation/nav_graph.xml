@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="cl.talentodigital.consultavalores.menu_listaValores.ui.MenuFragment"
+        android:name="cl.talentodigital.consultavalores.menuListado.ui.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action

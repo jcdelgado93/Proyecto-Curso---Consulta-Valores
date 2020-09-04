@@ -22,27 +22,40 @@
         android:layout_marginTop="@dimen/dp25"
         android:text="@string/calculadora"
         android:textSize="@dimen/sp24"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="iv" />
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_ingreso_monto"
+        android:id="@+id/tv_instrucciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp10"
-        android:text="@string/ingrese_el_monto_en_pesos_clp"
+        android:text="@string/seleccione_tipo_de_moneda_e_ingrese_un_monto"
         android:textSize="@dimen/sp18" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/et_convertir_monto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp50"
         android:layout_marginTop="@dimen/dp10"
-        android:layout_marginEnd="@dimen/dp50"
-        android:hint="@string/comto_a_convertir"
-        android:inputType="number" />
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_tipo_moneda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/tipos_monedas"/>
+
+        <Space
+            android:layout_width="@dimen/dp25"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_convertir_monto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/comto_a_convertir"
+            android:inputType="number" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_simbolo_igual"
@@ -207,15 +220,35 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_bitcoin"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp10"
-        android:hint="@string/bitcoin"
-        android:textAlignment="center"
-        android:textSize="@dimen/sp24"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_bitcoin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/bitcoin"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp24"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="@dimen/dp25"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_pesos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/pesos_chilenos"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp24"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

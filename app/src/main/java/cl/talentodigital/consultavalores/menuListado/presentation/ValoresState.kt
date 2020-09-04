@@ -1,6 +1,6 @@
-package cl.talentodigital.consultavalores.menu_listaValores.presentation
+package cl.talentodigital.consultavalores.menuListado.presentation
 
-import cl.talentodigital.consultavalores.menu_listaValores.domain.model.Valores
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
 
 sealed class ValoresState(
     open val result: Valores? = null,

@@ -17,11 +17,10 @@
     <string name="indicadores_economicos_hoy">{Indicadores económicos: hoy}</string>
     <string name="consulta_valores">Consulta valores</string>
     <string name="tu_ayudante_financiero">Tu ayudante financiero</string>
-    <string name="calculadora">Calculadora</string>
     <string name="simbolo_del_dolar">Simbolo del dolar</string>
     <string name="inicio_de_sesi_n">Inicio de sesión</string>
     <string name="calculadora">Calculadora</string>
-    <string name="ingrese_el_monto_en_pesos_clp">Ingrese el monto en Pesos (CLP)</string>
+    <string name="seleccione_tipo_de_moneda_e_ingrese_un_monto">Seleccione tipo de moneda e ingrese un monto</string>
     <string name="comto_a_convertir">Comto a convertir</string>
     <string name="signo_igual">=</string>
     <string name="dolar">Dolar</string>
@@ -35,9 +34,24 @@
     <string name="tpm">TPM</string>
     <string name="libra_de_cobre">Libra de cobre</string>
     <string name="bitcoin">Bitcoin</string>
-    <string name="tasa_de_desempleo">Tasa de desempleo</string>
     <string name="registro_de_usuario">Registro de usuario</string>
     <string name="tasa_de_desempleo_hoy">{Tasa de desempleo: hoy}</string>
     <string name="tasa_de_desempleo">Tasa de desempleo</string>
     <string name="informaci_n_e_historial_de_valores">Información e historial de valores</string>
+    <string name="pesos_chilenos">Pesos chilenos</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string-array name="tipos_monedas">
+        <item>Pesos</item>
+        <item>Dolar</item>
+        <item>Dolar intercambio</item>
+        <item>Euro</item>
+        <item>UTM</item>
+        <item>UF</item>
+        <item>IVP</item>
+        <item>IPC</item>
+        <item>TPM</item>
+        <item>IMACEC</item>
+        <item>Bitcoin</item>
+        <item>Libra de cobre</item>
+    </string-array>
 </resources>

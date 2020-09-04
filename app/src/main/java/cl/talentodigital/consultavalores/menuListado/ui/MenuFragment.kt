@@ -1,4 +1,4 @@
-package cl.talentodigital.consultavalores.menu_listaValores.ui
+package cl.talentodigital.consultavalores.menuListado.ui
 
 import android.os.Bundle
 import android.view.View
@@ -8,11 +8,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import cl.talentodigital.consultavalores.R
 import cl.talentodigital.consultavalores.databinding.FragmentMenuBinding
-import cl.talentodigital.consultavalores.menu_listaValores.data.remote.RemoteValoresRepository
-import cl.talentodigital.consultavalores.menu_listaValores.domain.model.Valores
-import cl.talentodigital.consultavalores.menu_listaValores.presentation.ValoresState
-import cl.talentodigital.consultavalores.menu_listaValores.presentation.ValoresViewModel
-import cl.talentodigital.consultavalores.menu_listaValores.presentation.ValoresViewModelFactory
+import cl.talentodigital.consultavalores.menuListado.data.remote.Mapper
+import cl.talentodigital.consultavalores.menuListado.data.remote.RemoteValoresRepository
+import cl.talentodigital.consultavalores.menuListado.domain.ValoresUseCase
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
+import cl.talentodigital.consultavalores.menuListado.presentation.ValoresState
+import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModel
+import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModelFactory
 import cl.talentodigital.consultavalores.network.api.RetrofitHandler
 
 class MenuFragment : Fragment(R.layout.fragment_menu) {
@@ -37,7 +39,12 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private fun setupDependencies() {
         viewModelFactory = ValoresViewModelFactory(
-            RemoteValoresRepository(RetrofitHandler.getValoresApi())
+            ValoresUseCase(
+                RemoteValoresRepository(
+                    RetrofitHandler.getValoresApi(),
+                    Mapper()
+                )
+            )
         )
 
         viewModel = ViewModelProvider(this, viewModelFactory)
@@ -49,6 +56,8 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             viewLifecycleOwner,
             { state -> handleState(state) }
         )
+
+        viewModel.obtenerValores()
     }
 
     private fun handleState(state: ValoresState?) {
