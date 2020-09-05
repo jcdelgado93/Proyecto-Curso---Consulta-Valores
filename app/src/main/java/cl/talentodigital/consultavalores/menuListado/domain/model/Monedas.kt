@@ -1,5 +1,5 @@
 package cl.talentodigital.consultavalores.menuListado.domain.model
 
-data class Valores(
-    val listaValores: List<Valor>
+data class Monedas(
+    val listadoDeMonedas: List<InfoMoneda>
 )

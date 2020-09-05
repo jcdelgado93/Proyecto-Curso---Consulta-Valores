@@ -3,9 +3,8 @@ package cl.talentodigital.consultavalores.menuListado.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cl.talentodigital.consultavalores.menuListado.domain.ValoresRepository
 import cl.talentodigital.consultavalores.menuListado.domain.ValoresUseCase
-import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
+import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -17,7 +16,7 @@ class ValoresViewModel(
 
     fun getLiveData() = liveData
 
-    fun obtenerValores() {
+    fun obtenerMonedas() {
         liveData.postValue(ValoresState.LoadingListaValores)
         viewModelScope.launch {
             try {
@@ -29,7 +28,7 @@ class ValoresViewModel(
         }
     }
 
-    private fun handleResult(result: Valores) {
+    private fun handleResult(result: Monedas) {
         liveData.postValue(ValoresState.ObtencionDeValores(result))
     }
 

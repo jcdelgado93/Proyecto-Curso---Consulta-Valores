@@ -1,25 +1,32 @@
 package cl.talentodigital.consultavalores.menuListado.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import cl.talentodigital.consultavalores.R
 import cl.talentodigital.consultavalores.databinding.FragmentMenuBinding
 import cl.talentodigital.consultavalores.menuListado.data.remote.Mapper
 import cl.talentodigital.consultavalores.menuListado.data.remote.RemoteValoresRepository
 import cl.talentodigital.consultavalores.menuListado.domain.ValoresUseCase
-import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
+import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresState
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModel
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModelFactory
 import cl.talentodigital.consultavalores.network.api.RetrofitHandler
+import cl.talentodigital.consultavalores.util.extentions.alert
+
 
 class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private lateinit var binding: FragmentMenuBinding
+    private lateinit var dialog: CerrarSesionDialogFragment
     private lateinit var adapter: ValoresAdapter
     private lateinit var viewModel: ValoresViewModel
     private lateinit var viewModelFactory: ValoresViewModelFactory
@@ -31,6 +38,34 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         setupLiveData()
         setupRecyclerView()
         obtenerViewModel()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val inflater: MenuInflater? = activity?.menuInflater
+        inflater?.inflate(R.menu.menu_actions, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_calculadora -> {
+                irACalculadora()
+                true
+            }
+            R.id.action_cerrar_sesion -> {
+                mostrarDialogoDeConfirmacion()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun irACalculadora() {
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_menuFragment_to_calculadoraFragment)
+    }
+
+    private fun mostrarDialogoDeConfirmacion() {
+        activity?.supportFragmentManager?.let { dialog.show(it, "String") }
     }
 
     private fun setupBind(view: View) {
@@ -57,7 +92,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             { state -> handleState(state) }
         )
 
-        viewModel.obtenerValores()
+        viewModel.obtenerMonedas()
     }
 
     private fun handleState(state: ValoresState?) {
@@ -69,26 +104,27 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     }
 
     private fun mostrarCargando() {
-        Toast.makeText(requireContext(), "Cargando valores.", Toast.LENGTH_SHORT).show()
+        alert("Cargando valores.")
     }
 
-    private fun mostrarValores(it: Valores) {
-        adapter = ValoresAdapter(it.listaValores)
+    private fun mostrarValores(it: Monedas) {
+        adapter = ValoresAdapter(it.listadoDeMonedas)
         binding.rvListaValores.adapter = adapter
     }
 
-    private fun mostrarError(it: Throwable) {
-        Toast.makeText(requireContext(), "Error: {${it.message}", Toast.LENGTH_SHORT).show()
+    private fun mostrarError(error: Throwable) {
+        alert("Error: ${error.message}")
     }
 
     private fun setupRecyclerView() {
         binding.apply {
             rvListaValores.setHasFixedSize(true)
             rvListaValores.layoutManager = LinearLayoutManager(requireContext())
+            rvListaValores.itemAnimator = DefaultItemAnimator()
         }
     }
 
     private fun obtenerViewModel() {
-        viewModel.obtenerValores()
+        viewModel.obtenerMonedas()
     }
 }

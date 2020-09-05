@@ -40,6 +40,7 @@
     <string name="informaci_n_e_historial_de_valores">Información e historial de valores</string>
     <string name="pesos_chilenos">Pesos chilenos</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="seguro_a_que_quieres_cerrar_sesion">¿Seguro/a que quieres cerrar sesión?</string>
     <string-array name="tipos_monedas">
         <item>Pesos</item>
         <item>Dolar</item>

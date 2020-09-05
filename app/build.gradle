@@ -42,7 +42,7 @@ android {
 dependencies {
     def layout_version = "2.0.1"
     def picasso_version = "2.71828"
-    def retrofit_version = "2.6.1"
+    def retrofit_version = "2.6.2"
     def gson_version = "2.8.6"
     def okhttp_version = "4.1.0"
     def corutines_version = "1.1.1"
@@ -53,7 +53,9 @@ dependencies {
     def lifecycle_version = "2.2.0"
     def fb_analytics_version = "17.5.0"
     def fb_auth_version = "19.3.2"
-    def fb_database_version = "19.3.1"
+    def fb_database_version = "19.4.0"
+    def moshi_version = "1.9.3"
+    def moshi_converter_version = "2.6.2"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -66,8 +68,7 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
     implementation "com.google.code.gson:gson:$gson_version"
 
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
@@ -93,6 +94,10 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics:$fb_analytics_version"
     implementation "com.google.firebase:firebase-auth:$fb_auth_version"
     implementation "com.google.firebase:firebase-database:$fb_database_version"
+
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

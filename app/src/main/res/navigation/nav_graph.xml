@@ -48,4 +48,13 @@
         android:name="cl.talentodigital.consultavalores.detalleMoneda.ui.DetalleMonedaFragment"
         android:label="fragment_detalle_moneda"
         tools:layout="@layout/fragment_detalle_moneda" />
+    <dialog
+        android:id="@+id/cerrarSesionDialogFragment"
+        android:name="cl.talentodigital.consultavalores.menuListado.ui.CerrarSesionDialogFragment"
+        android:label="CerrarSesionDialogFragment"
+        tools:layout="@layout/dialog_cierre_sesion">
+        <action
+            android:id="@+id/action_cerrarSesionDialogFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </dialog>
 </navigation>
