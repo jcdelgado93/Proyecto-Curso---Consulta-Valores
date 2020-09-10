@@ -32,17 +32,9 @@
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
-            android:id="@+id/action_menuFragment_to_calculadoraFragment"
-            app:destination="@id/calculadoraFragment" />
-        <action
             android:id="@+id/action_menuFragment_to_detalleMonedaFragment"
             app:destination="@id/detalleMonedaFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/calculadoraFragment"
-        android:name="cl.talentodigital.consultavalores.calculadora.ui.CalculadoraFragment"
-        android:label="fragment_calculadora"
-        tools:layout="@layout/fragment_calculadora" />
     <fragment
         android:id="@+id/detalleMonedaFragment"
         android:name="cl.talentodigital.consultavalores.detalleMoneda.ui.DetalleMonedaFragment"

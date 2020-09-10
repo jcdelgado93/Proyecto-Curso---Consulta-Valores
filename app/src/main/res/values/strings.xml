@@ -23,7 +23,6 @@
     <string name="seleccione_tipo_de_moneda_e_ingrese_un_monto">Seleccione tipo de moneda e ingrese un monto</string>
     <string name="comto_a_convertir">Comto a convertir</string>
     <string name="signo_igual">=</string>
-    <string name="dolar">Dolar</string>
     <string name="euro">Euro</string>
     <string name="uf">UF</string>
     <string name="ivp">IVP</string>
@@ -41,6 +40,13 @@
     <string name="pesos_chilenos">Pesos chilenos</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="seguro_a_que_quieres_cerrar_sesion">¿Seguro/a que quieres cerrar sesión?</string>
+    <string name="clp">CLP</string>
+    <string name="dolar">Dolar</string>
+    <string name="pesos">Pesos</string>
+    <string name="resultado">Resultado</string>
+    <string name="ingresa_el_valor">Ingresa el valor</string>
+    <string name="historial_de_valores">Historial de valores</string>
+    <string name="actualizar">Actualizar</string>
     <string-array name="tipos_monedas">
         <item>Pesos</item>
         <item>Dolar</item>

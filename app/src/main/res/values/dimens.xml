@@ -12,4 +12,5 @@
     <dimen name="dp50">50dp</dimen>
     <dimen name="sp50">50sp</dimen>
     <dimen name="dp5">5dp</dimen>
+    <dimen name="dp30">30dp</dimen>
 </resources>

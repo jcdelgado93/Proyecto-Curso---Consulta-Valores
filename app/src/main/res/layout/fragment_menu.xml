@@ -6,21 +6,15 @@
     android:orientation="vertical"
     tools:context=".menuListado.ui.MenuFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="@dimen/dp100"
-        android:layout_height="@dimen/dp100"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_indicadores_economicos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp25"
         android:text="@string/indicadores_economicos_hoy"
-        android:textSize="@dimen/sp18" />
+        android:textSize="@dimen/sp24"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_lista_valores"

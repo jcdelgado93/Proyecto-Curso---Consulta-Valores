@@ -10,13 +10,6 @@
         android:orientation="vertical"
         tools:context=".registro.ui.RegisterFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="@dimen/dp100"
-            android:layout_height="@dimen/dp100"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher" />
-
         <TextView
             android:id="@+id/tv_registro_usuario"
             android:layout_width="wrap_content"
@@ -27,15 +20,30 @@
             android:textSize="@dimen/sp24"
             android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_nombre"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp25"
-            android:text="@string/nombre_y_apellido"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp25">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icono_usuario"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/ic_user"/>
+
+            <Space
+                android:layout_width="@dimen/dp10"
+                android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_y_apellido"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_nombre"
@@ -45,16 +53,30 @@
             android:hint="@string/ingresa_tu_nombre_y_apellido"
             android:inputType="text" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_rut"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="@string/rut"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icono_carnet"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/ic_id_card"/>
+
+            <Space
+                android:layout_width="@dimen/dp10"
+                android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_rut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rut"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+        </LinearLayout>
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_rut"
             android:layout_width="match_parent"
@@ -63,15 +85,30 @@
             android:hint="@string/ingresa_tu_rut"
             android:inputType="text" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="@string/correo_electronico"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icono_email"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/ic_email"/>
+
+            <Space
+                android:layout_width="@dimen/dp10"
+                android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/correo_electronico"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_email"
@@ -81,15 +118,30 @@
             android:hint="@string/ingresa_tu_correo_electronico"
             android:inputType="textEmailAddress" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_contrasena"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="@string/contrasena"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icono_contrasena"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/ic_password"/>
+
+            <Space
+                android:layout_width="@dimen/dp10"
+                android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_contrasena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contrasena"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_contrasena"
@@ -99,15 +151,30 @@
             android:hint="@string/ingresa_tu_contrasena"
             android:inputType="textPassword" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_confirmar_contrasena"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="@string/confirmar_contrasena"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icono_confirmar_contrasena"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/ic_password"/>
+
+            <Space
+                android:layout_width="@dimen/dp10"
+                android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_confirmar_contrasena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirmar_contrasena"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_confirmar_contrasena"

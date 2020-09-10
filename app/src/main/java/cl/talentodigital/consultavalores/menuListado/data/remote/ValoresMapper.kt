@@ -2,7 +2,7 @@ package cl.talentodigital.consultavalores.menuListado.data.remote
 
 import cl.talentodigital.consultavalores.menuListado.domain.model.*
 
-class Mapper {
+class ValoresMapper {
 
     fun mapToEntityMoneda(monedaModel: MonedasModel): Monedas {
         monedaModel.apply {

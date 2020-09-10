@@ -2,14 +2,13 @@ package cl.talentodigital.consultavalores.menuListado.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import cl.talentodigital.consultavalores.menuListado.domain.ValoresRepository
-import cl.talentodigital.consultavalores.menuListado.domain.ValoresUseCase
+import cl.talentodigital.consultavalores.menuListado.domain.ObtenerValoresUseCase
 
 class ValoresViewModelFactory(
-    private val useCase: ValoresUseCase
+    private val useCaseObtener: ObtenerValoresUseCase
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(ValoresUseCase::class.java)
-            .newInstance(useCase)
+        return modelClass.getConstructor(ObtenerValoresUseCase::class.java)
+            .newInstance(useCaseObtener)
     }
 }

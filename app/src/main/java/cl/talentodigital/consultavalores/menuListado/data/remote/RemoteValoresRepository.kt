@@ -5,11 +5,11 @@ import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
 
 class RemoteValoresRepository(
     private val repository : ApiValores,
-    private val mapper : Mapper
+    private val valoresMapper : ValoresMapper
 ) : ValoresRepository {
 
     override suspend fun obtenerMonedas(): Monedas {
         val valores = repository.obtenerMonedas()
-        return mapper.mapToEntityMoneda(valores)
+        return valoresMapper.mapToEntityMoneda(valores)
     }
 }

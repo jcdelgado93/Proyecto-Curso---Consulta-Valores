@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import cl.talentodigital.consultavalores.R
 import cl.talentodigital.consultavalores.databinding.FragmentMenuBinding
-import cl.talentodigital.consultavalores.menuListado.data.remote.Mapper
+import cl.talentodigital.consultavalores.detalleMoneda.ui.DetalleMonedaFragment
+import cl.talentodigital.consultavalores.menuListado.data.remote.ValoresMapper
 import cl.talentodigital.consultavalores.menuListado.data.remote.RemoteValoresRepository
-import cl.talentodigital.consultavalores.menuListado.domain.ValoresUseCase
+import cl.talentodigital.consultavalores.menuListado.domain.ObtenerValoresUseCase
+import cl.talentodigital.consultavalores.menuListado.domain.model.InfoMoneda
 import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresState
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModel
@@ -22,8 +24,7 @@ import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewMod
 import cl.talentodigital.consultavalores.network.api.RetrofitHandler
 import cl.talentodigital.consultavalores.util.extentions.alert
 
-
-class MenuFragment : Fragment(R.layout.fragment_menu) {
+class MenuFragment: Fragment(R.layout.fragment_menu) {
 
     private lateinit var binding: FragmentMenuBinding
     private lateinit var dialog: CerrarSesionDialogFragment
@@ -47,8 +48,8 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_calculadora -> {
-                irACalculadora()
+            R.id.action_actualizar -> {
+                actualizar()
                 true
             }
             R.id.action_cerrar_sesion -> {
@@ -59,9 +60,8 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         }
     }
 
-    private fun irACalculadora() {
-        Navigation.findNavController(binding.root)
-            .navigate(R.id.action_menuFragment_to_calculadoraFragment)
+    private fun actualizar() {
+
     }
 
     private fun mostrarDialogoDeConfirmacion() {
@@ -74,10 +74,10 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private fun setupDependencies() {
         viewModelFactory = ValoresViewModelFactory(
-            ValoresUseCase(
+            ObtenerValoresUseCase(
                 RemoteValoresRepository(
                     RetrofitHandler.getValoresApi(),
-                    Mapper()
+                    ValoresMapper()
                 )
             )
         )
@@ -107,8 +107,13 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         alert("Cargando valores.")
     }
 
-    private fun mostrarValores(it: Monedas) {
-        adapter = ValoresAdapter(it.listadoDeMonedas)
+    private fun mostrarValores(monedas: Monedas) {
+        adapter = ValoresAdapter(monedas.listadoDeMonedas, object : ItemListener {
+            override fun onItemClick(infoMoneda: InfoMoneda) {
+                view?.let { safeView -> Navigation.findNavController(safeView)
+                    .navigate(R.id.action_menuFragment_to_detalleMonedaFragment, DetalleMonedaFragment.infoMonedaBundle(infoMoneda)) }
+            }
+        })
         binding.rvListaValores.adapter = adapter
     }
 
