@@ -1,7 +1,7 @@
 package cl.talentodigital.consultavalores.menuListado.ui
 
-import cl.talentodigital.consultavalores.menuListado.domain.model.InfoMoneda
+import cl.talentodigital.consultavalores.menuListado.domain.model.DetalleValores
 
 interface ItemListener {
-    fun onItemClick(infoMoneda : InfoMoneda)
+    fun onItemClick(detalleValores : DetalleValores)
 }

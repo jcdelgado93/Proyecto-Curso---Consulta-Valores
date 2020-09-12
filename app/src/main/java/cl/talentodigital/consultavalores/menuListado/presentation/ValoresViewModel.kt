@@ -4,35 +4,35 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cl.talentodigital.consultavalores.menuListado.domain.ObtenerValoresUseCase
-import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ValoresViewModel(
-    private val useCaseObtener: ObtenerValoresUseCase
+    private val obtenerValoresUseCase: ObtenerValoresUseCase
 ) : ViewModel() {
 
     private val liveData = MutableLiveData<ValoresState>()
 
     fun getLiveData() = liveData
 
-    fun obtenerMonedas() {
-        liveData.postValue(ValoresState.LoadingListaValores)
+    fun obtenerValores() {
+        liveData.postValue(ValoresState.CargandoListaDeValoresState)
         viewModelScope.launch {
             try {
-                val result = useCaseObtener.execute()
+                val result = obtenerValoresUseCase.execute()
                 handleResult(result)
             } catch (exception: Exception) {
-                handlerError(exception)
+                handleError(exception)
             }
         }
     }
 
-    private fun handleResult(result: Monedas) {
-        liveData.postValue(ValoresState.ObtencionDeValores(result))
+    private fun handleResult(result: Valores) {
+        liveData.postValue(ValoresState.ObtenerTodosLosValores(result))
     }
 
-    private fun handlerError(exception: Exception) {
+    private fun handleError(exception: Exception) {
         liveData.postValue(ValoresState.Error(exception))
     }
 }

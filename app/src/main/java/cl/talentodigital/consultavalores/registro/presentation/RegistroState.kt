@@ -3,8 +3,8 @@ package cl.talentodigital.consultavalores.registro.presentation
 sealed class RegistroState(
     open val error: Throwable? = null
 ) {
-    object LoadingRegistroState: RegistroState()
-    object SuccessRegistroState : RegistroState()
-    object EmailAlreadyExist : RegistroState()
-    data class ErrorRegistroState(override val error: Throwable) : RegistroState(error = error)
+    object CargandoRegistroState: RegistroState()
+    object RegistroExitosoState : RegistroState()
+    object EmailYaExisteState : RegistroState()
+    data class ErrorState(override val error: Throwable) : RegistroState(error = error)
 }

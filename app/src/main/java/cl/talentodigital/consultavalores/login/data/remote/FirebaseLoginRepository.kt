@@ -9,7 +9,7 @@ class FirebaseLoginRepository(
     private val firebaseAuth: FirebaseAuth
 ) : LoginRepository {
 
-    override suspend fun doLogin(email: String, contrasena: String): LoginUsuario {
+    override suspend fun ingresarUsuario(email: String, contrasena: String): LoginUsuario {
         firebaseAuth
             .signInWithEmailAndPassword(email, contrasena)
             .await()

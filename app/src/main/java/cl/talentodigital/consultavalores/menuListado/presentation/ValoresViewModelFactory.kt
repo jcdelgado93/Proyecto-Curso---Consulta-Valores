@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import cl.talentodigital.consultavalores.menuListado.domain.ObtenerValoresUseCase
 
 class ValoresViewModelFactory(
-    private val useCaseObtener: ObtenerValoresUseCase
+    private val obtenerUseCase: ObtenerValoresUseCase
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return modelClass.getConstructor(ObtenerValoresUseCase::class.java)
-            .newInstance(useCaseObtener)
+            .newInstance(obtenerUseCase)
     }
 }

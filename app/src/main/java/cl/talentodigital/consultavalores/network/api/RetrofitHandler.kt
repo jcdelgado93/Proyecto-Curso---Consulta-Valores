@@ -1,5 +1,6 @@
 package cl.talentodigital.consultavalores.network.api
 
+import cl.talentodigital.consultavalores.detalleMoneda.data.remote.ApiHistorialDeValores
 import cl.talentodigital.consultavalores.menuListado.data.remote.ApiValores
 import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
@@ -32,6 +33,10 @@ class RetrofitHandler {
 
         fun getValoresApi(): ApiValores {
             return getRetrofit().create(ApiValores::class.java)
+        }
+
+        fun getHistorialApi(): ApiHistorialDeValores {
+            return getRetrofit().create(ApiHistorialDeValores::class.java)
         }
     }
 }

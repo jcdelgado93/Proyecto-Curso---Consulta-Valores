@@ -11,5 +11,5 @@ data class HistorialModel(
     val nombre : String? = null,
     @Json(name = "unidad_medida")
     val unidadMedida : String? = null,
-    val serie : Array<InfoHistorialModel>
+    val serie : List<DetalleHistorialModel>? = null
 )

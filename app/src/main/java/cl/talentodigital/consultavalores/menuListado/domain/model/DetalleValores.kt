@@ -1,6 +1,6 @@
 package cl.talentodigital.consultavalores.menuListado.domain.model
 
-data class InfoMoneda(
+data class DetalleValores(
     val codigo: String? = null,
     val nombre: String? = null,
     val unidadMedida: String? = null,

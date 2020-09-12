@@ -1,7 +1,7 @@
 package cl.talentodigital.consultavalores.menuListado.domain
 
-import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
 
 interface ValoresRepository {
-    suspend fun obtenerMonedas(): Monedas
+    suspend fun obtenerValores(): Valores
 }

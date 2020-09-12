@@ -5,5 +5,5 @@ import retrofit2.http.GET
 interface ApiValores {
 
     @GET("api")
-    suspend fun obtenerMonedas() : MonedasModel
+    suspend fun obtenerMonedas() : ValoresModel
 }

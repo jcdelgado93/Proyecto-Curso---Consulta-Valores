@@ -3,7 +3,6 @@ package cl.talentodigital.consultavalores.registro.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cl.talentodigital.consultavalores.R
 import cl.talentodigital.consultavalores.databinding.FragmentRegisterBinding
@@ -20,8 +19,8 @@ import com.google.firebase.database.FirebaseDatabase
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private lateinit var binding: FragmentRegisterBinding
-    private lateinit var viewModel: RegistroViewModel
-    private lateinit var viewModelFactory: RegistroViewModelFactory
+    private lateinit var registroViewModel: RegistroViewModel
+    private lateinit var registroViewModelFactory: RegistroViewModelFactory
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,7 +31,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     }
 
     private fun setupDependencies() {
-        viewModelFactory = RegistroViewModelFactory(
+        registroViewModelFactory = RegistroViewModelFactory(
             RegistroUseCase(
                 FirebaseRegistroRepository(
                     FirebaseAuth.getInstance(),
@@ -41,14 +40,14 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             )
         )
 
-        viewModel = ViewModelProvider(
+        registroViewModel = ViewModelProvider(
             this,
-            viewModelFactory
+            registroViewModelFactory
         ).get(RegistroViewModel::class.java)
     }
 
     private fun setupLiveData() {
-        viewModel.getLiveData()
+        registroViewModel.getLiveData()
             .observe(viewLifecycleOwner,
                { state -> state?.let { handleState(it) } }
             )
@@ -56,10 +55,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private fun handleState(state: RegistroState) {
         when (state) {
-            is RegistroState.LoadingRegistroState -> showLoading()
-            is RegistroState.ErrorRegistroState -> showError()
-            is RegistroState.EmailAlreadyExist -> repeatedEmail()
-            is RegistroState.SuccessRegistroState -> successRegister()
+            is RegistroState.CargandoRegistroState -> showLoading()
+            is RegistroState.ErrorState -> showError()
+            is RegistroState.EmailYaExisteState -> repeatedEmail()
+            is RegistroState.RegistroExitosoState -> successRegister()
         }
     }
 
@@ -68,15 +67,15 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     }
 
     private fun showError() {
-        alert("Error del servidor")
+        alert("ErrorState del servidor.")
     }
 
     private fun repeatedEmail() {
-        alert("El email ya esta siendo usado")
+        alert("El email ya esta siendo usado.")
     }
 
     private fun successRegister() {
-        alert("Registro exitoso")
+        alert("Registro exitoso.")
     }
 
     private fun setupBind(view: View) {
@@ -87,7 +86,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding.apply {
             btnRegistrar.setOnClickListener {
                 if (validarValoresDelEditText()) {
-                    viewModel.registrarUsuario(obtenerValoresDelEditText())
+                    registroViewModel.registrarUsuario(obtenerValoresDelEditText())
                 }
             }
 

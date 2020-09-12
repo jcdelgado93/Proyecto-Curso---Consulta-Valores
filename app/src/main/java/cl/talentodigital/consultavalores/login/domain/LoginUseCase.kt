@@ -1,7 +1,7 @@
 package cl.talentodigital.consultavalores.login.domain
 
 class LoginUseCase(
-    private val repository: LoginRepository
+    private val loginRepository: LoginRepository
 ) {
-    suspend fun execute(email: String, contrasena: String) = repository.doLogin(email, contrasena)
+    suspend fun execute(email: String, contrasena: String) = loginRepository.ingresarUsuario(email, contrasena)
 }

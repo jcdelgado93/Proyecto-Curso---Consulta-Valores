@@ -3,15 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/dp10"
+    android:layout_marginEnd="@dimen/dp10"
     android:orientation="vertical"
     tools:context=".detalleMoneda.ui.DetalleMonedaFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp25"
         android:text="@string/informaci_n_e_historial_de_valores"
+        android:textAlignment="center"
         android:textSize="@dimen/sp24"
         android:textStyle="bold" />
 
@@ -35,119 +39,33 @@
             android:layout_marginStart="@dimen/dp10"
             android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_codigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/lorem" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp5"
                 tools:text="@tools:sample/lorem" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_unidad_medida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp5"
                 tools:text="@tools:sample/lorem" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_valor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp5"
                 tools:text="@tools:sample/lorem" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="@string/pesos"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/sp24"
-            android:textStyle="bold"
-            tools:ignore="RtlCompat" />
-
-        <Space
-            android:layout_width="@dimen/dp10"
-            android:layout_height="match_parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/dp50"
-            android:layout_height="@dimen/dp50"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_right_arrow" />
-
-        <Space
-            android:layout_width="@dimen/dp10"
-            android:layout_height="match_parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_nombre_moneda"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="@string/dolar"
-            android:textAlignment="textStart"
-            android:textSize="@dimen/sp24"
-            android:textStyle="bold"
-            tools:ignore="RtlCompat" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp10"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_valor_a_convertir"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_weight="1"
-            android:hint="@string/ingresa_el_valor"
-            android:inputType="number" />
-
-        <Space
-            android:layout_width="@dimen/dp10"
-            android:layout_height="match_parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_equal_sign" />
-
-        <Space
-            android:layout_width="@dimen/dp10"
-            android:layout_height="match_parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_resultado_conversion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
-            android:layout_weight="1"
-            android:hint="@string/resultado"
-            android:textAlignment="center"
-            android:textSize="@dimen/sp24"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -158,6 +76,32 @@
         android:text="@string/historial_de_valores"
         android:textSize="@dimen/sp24"
         android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_anio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/ingrese_anio_de_consulta"
+            android:inputType="number" />
+
+        <Space
+            android:layout_width="@dimen/dp10"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_consultar"
+            android:layout_width="@dimen/dp150"
+            android:layout_height="wrap_content"
+            android:text="@string/consultar"
+            android:textAllCaps="false"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_historial_valores"

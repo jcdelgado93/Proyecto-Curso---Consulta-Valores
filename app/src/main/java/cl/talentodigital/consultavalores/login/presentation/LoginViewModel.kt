@@ -17,7 +17,7 @@ class LoginViewModel(
     fun getLiveData() = liveData
 
     fun ingresarUsuario(email: String, contrasena: String) {
-        liveData.postValue(LoginState.LoadingLogin)
+        liveData.postValue(LoginState.CargandoLoginState)
         viewModelScope.launch {
             try {
                 val result = loginUseCase.execute(email, contrasena)
@@ -29,14 +29,14 @@ class LoginViewModel(
     }
 
     private fun handleResult(result: LoginUsuario) {
-        liveData.postValue(LoginState.SuccessLogin(result))
+        liveData.postValue(LoginState.LoginExitosoState(result))
     }
 
     private fun handleError(error: Exception) {
         if (error is FirebaseAuthInvalidCredentialsException) {
-            liveData.postValue(LoginState.InvalidUser)
+            liveData.postValue(LoginState.UsuarioInvalidoState)
         } else {
-            liveData.postValue(LoginState.Error(error))
+            liveData.postValue(LoginState.ErrorState(error))
         }
     }
 }

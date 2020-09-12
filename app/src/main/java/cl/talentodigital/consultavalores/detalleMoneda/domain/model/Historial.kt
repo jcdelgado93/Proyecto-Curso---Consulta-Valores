@@ -1,5 +1,10 @@
 package cl.talentodigital.consultavalores.detalleMoneda.domain.model
 
 data class Historial(
-    val listadoDeHistorial : List<InfoHistorial>
+    val version : String,
+    val autor : String,
+    val codigo : String,
+    val nombre : String,
+    val unidadMedida : String,
+    val serie : List<InfoHistorial>
 )

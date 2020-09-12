@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cl.talentodigital.consultavalores.databinding.ItemValoresBinding
-import cl.talentodigital.consultavalores.menuListado.domain.model.InfoMoneda
-import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
+import cl.talentodigital.consultavalores.menuListado.domain.model.DetalleValores
 
 class ValoresAdapter(
-    private val valores: List<InfoMoneda>,
+    private val valores: List<DetalleValores>,
     private val listener : ItemListener
 ) : RecyclerView.Adapter<ValoresViewHolder>() {
 

@@ -1,15 +1,15 @@
 package cl.talentodigital.consultavalores.menuListado.data.remote
 
 import cl.talentodigital.consultavalores.menuListado.domain.ValoresRepository
-import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
 
 class RemoteValoresRepository(
-    private val repository : ApiValores,
+    private val apiRepository : ApiValores,
     private val valoresMapper : ValoresMapper
 ) : ValoresRepository {
 
-    override suspend fun obtenerMonedas(): Monedas {
-        val valores = repository.obtenerMonedas()
-        return valoresMapper.mapToEntityMoneda(valores)
+    override suspend fun obtenerValores(): Valores {
+        val valores = apiRepository.obtenerMonedas()
+        return valoresMapper.mapToEntityValores(valores)
     }
 }

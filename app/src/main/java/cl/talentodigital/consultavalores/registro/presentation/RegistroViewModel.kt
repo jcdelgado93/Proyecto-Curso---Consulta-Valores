@@ -17,7 +17,7 @@ class RegistroViewModel(
     fun getLiveData() = liveData
 
     fun registrarUsuario(registroUsuario: RegistroUsuario) {
-        liveData.postValue(RegistroState.LoadingRegistroState)
+        liveData.postValue(RegistroState.CargandoRegistroState)
         viewModelScope.launch {
             try {
                 val result = registroUseCase.execute(registroUsuario)
@@ -30,17 +30,17 @@ class RegistroViewModel(
 
     private fun handleError(exception: Exception) {
         if (exception is FirebaseAuthUserCollisionException) {
-            liveData.postValue(RegistroState.EmailAlreadyExist)
+            liveData.postValue(RegistroState.EmailYaExisteState)
         } else {
-            liveData.postValue(RegistroState.ErrorRegistroState(exception))
+            liveData.postValue(RegistroState.ErrorState(exception))
         }
     }
 
     private fun handleResult(result: Boolean) {
         if (result) {
-            liveData.postValue(RegistroState.SuccessRegistroState)
+            liveData.postValue(RegistroState.RegistroExitosoState)
         } else {
-            liveData.postValue(RegistroState.EmailAlreadyExist)
+            liveData.postValue(RegistroState.EmailYaExisteState)
         }
     }
 }

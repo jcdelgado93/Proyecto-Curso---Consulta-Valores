@@ -12,25 +12,25 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import cl.talentodigital.consultavalores.R
 import cl.talentodigital.consultavalores.databinding.FragmentMenuBinding
-import cl.talentodigital.consultavalores.detalleMoneda.ui.DetalleMonedaFragment
+import cl.talentodigital.consultavalores.util.infoMonedaBundle
 import cl.talentodigital.consultavalores.menuListado.data.remote.ValoresMapper
 import cl.talentodigital.consultavalores.menuListado.data.remote.RemoteValoresRepository
 import cl.talentodigital.consultavalores.menuListado.domain.ObtenerValoresUseCase
-import cl.talentodigital.consultavalores.menuListado.domain.model.InfoMoneda
-import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
+import cl.talentodigital.consultavalores.menuListado.domain.model.DetalleValores
+import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresState
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModel
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModelFactory
 import cl.talentodigital.consultavalores.network.api.RetrofitHandler
 import cl.talentodigital.consultavalores.util.extentions.alert
 
-class MenuFragment: Fragment(R.layout.fragment_menu) {
+class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private lateinit var binding: FragmentMenuBinding
     private lateinit var dialog: CerrarSesionDialogFragment
-    private lateinit var adapter: ValoresAdapter
-    private lateinit var viewModel: ValoresViewModel
-    private lateinit var viewModelFactory: ValoresViewModelFactory
+    private lateinit var valoresAdapter: ValoresAdapter
+    private lateinit var valoresViewModel: ValoresViewModel
+    private lateinit var valoresViewModelFactory: ValoresViewModelFactory
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,7 +61,7 @@ class MenuFragment: Fragment(R.layout.fragment_menu) {
     }
 
     private fun actualizar() {
-
+        //TODO: aksngjbsdjnvkosadgsffgbadfhsdhsfgdscbfhkh
     }
 
     private fun mostrarDialogoDeConfirmacion() {
@@ -73,7 +73,7 @@ class MenuFragment: Fragment(R.layout.fragment_menu) {
     }
 
     private fun setupDependencies() {
-        viewModelFactory = ValoresViewModelFactory(
+        valoresViewModelFactory = ValoresViewModelFactory(
             ObtenerValoresUseCase(
                 RemoteValoresRepository(
                     RetrofitHandler.getValoresApi(),
@@ -82,23 +82,23 @@ class MenuFragment: Fragment(R.layout.fragment_menu) {
             )
         )
 
-        viewModel = ViewModelProvider(this, viewModelFactory)
+        valoresViewModel = ViewModelProvider(this, valoresViewModelFactory)
             .get(ValoresViewModel::class.java)
     }
 
     private fun setupLiveData() {
-        viewModel.getLiveData().observe(
+        valoresViewModel.getLiveData().observe(
             viewLifecycleOwner,
             { state -> handleState(state) }
         )
 
-        viewModel.obtenerMonedas()
+        valoresViewModel.obtenerValores()
     }
 
     private fun handleState(state: ValoresState?) {
         when (state) {
-            is ValoresState.LoadingListaValores -> mostrarCargando()
-            is ValoresState.ObtencionDeValores -> state.result?.let { mostrarValores(it) }
+            is ValoresState.CargandoListaDeValoresState -> mostrarCargando()
+            is ValoresState.ObtenerTodosLosValores -> state.resultValores?.let { mostrarValores(it) }
             is ValoresState.Error -> state.error?.let { mostrarError(it) }
         }
     }
@@ -107,18 +107,23 @@ class MenuFragment: Fragment(R.layout.fragment_menu) {
         alert("Cargando valores.")
     }
 
-    private fun mostrarValores(monedas: Monedas) {
-        adapter = ValoresAdapter(monedas.listadoDeMonedas, object : ItemListener {
-            override fun onItemClick(infoMoneda: InfoMoneda) {
-                view?.let { safeView -> Navigation.findNavController(safeView)
-                    .navigate(R.id.action_menuFragment_to_detalleMonedaFragment, DetalleMonedaFragment.infoMonedaBundle(infoMoneda)) }
+    private fun mostrarValores(valores: Valores) {
+        valoresAdapter = ValoresAdapter(valores.listadoDeMonedas, object : ItemListener {
+            override fun onItemClick(detalleValores: DetalleValores) {
+                view?.let { safeView ->
+                    Navigation.findNavController(safeView)
+                        .navigate(
+                            R.id.action_menuFragment_to_detalleMonedaFragment,
+                            infoMonedaBundle(detalleValores)
+                        )
+                }
             }
         })
-        binding.rvListaValores.adapter = adapter
+        binding.rvListaValores.adapter = valoresAdapter
     }
 
     private fun mostrarError(error: Throwable) {
-        alert("Error: ${error.message}")
+        alert("ErrorState: ${error.message}")
     }
 
     private fun setupRecyclerView() {
@@ -130,6 +135,6 @@ class MenuFragment: Fragment(R.layout.fragment_menu) {
     }
 
     private fun obtenerViewModel() {
-        viewModel.obtenerMonedas()
+        valoresViewModel.obtenerValores()
     }
 }

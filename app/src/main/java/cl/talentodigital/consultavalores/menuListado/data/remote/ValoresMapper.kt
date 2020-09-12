@@ -4,32 +4,32 @@ import cl.talentodigital.consultavalores.menuListado.domain.model.*
 
 class ValoresMapper {
 
-    fun mapToEntityMoneda(monedaModel: MonedasModel): Monedas {
+    fun mapToEntityValores(monedaModel: ValoresModel): Valores {
         monedaModel.apply {
-            val listadoMonedas: MutableList<InfoMoneda> = ArrayList()
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.uf))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.ivp))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.dolar))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.dolarIntercambio))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.euro))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.ipc))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.utm))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.imacec))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.tpm))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.libraCobre))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.tasaDesempleo))
-            listadoMonedas.add(mapToEntityInfoMoneda(monedaModel.bitcoin))
-            return Monedas(listadoMonedas)
+            val listadoMonedas: MutableList<DetalleValores> = ArrayList()
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.uf))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.ivp))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.dolar))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.dolarIntercambio))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.euro))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.ipc))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.utm))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.imacec))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.tpm))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.libraCobre))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.tasaDesempleo))
+            listadoMonedas.add(mapToEntityDetalleValores(monedaModel.bitcoin))
+            return Valores(listadoMonedas)
         }
     }
 
-    fun mapToEntityInfoMoneda(infoMonedaModel: InfoMonedaModel) : InfoMoneda {
-        return InfoMoneda(
-            infoMonedaModel.codigo,
-            infoMonedaModel.nombre,
-            infoMonedaModel.unidadMedida,
-            infoMonedaModel.fecha,
-            infoMonedaModel.valor
+    fun mapToEntityDetalleValores(detalleValoresModel: DetalleValoresModel) : DetalleValores {
+        return DetalleValores(
+            detalleValoresModel.codigo,
+            detalleValoresModel.nombre,
+            detalleValoresModel.unidadMedida,
+            detalleValoresModel.fecha,
+            detalleValoresModel.valor
         )
     }
 }

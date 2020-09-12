@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/dp10"
+    android:layout_marginEnd="@dimen/dp10"
     android:orientation="vertical"
     tools:context=".menuListado.ui.MenuFragment">
 
@@ -14,7 +16,7 @@
         android:layout_marginTop="@dimen/dp25"
         android:text="@string/indicadores_economicos_hoy"
         android:textSize="@dimen/sp24"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_lista_valores"

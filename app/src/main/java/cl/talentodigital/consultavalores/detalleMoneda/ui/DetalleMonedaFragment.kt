@@ -4,77 +4,74 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import cl.talentodigital.consultavalores.R
 import cl.talentodigital.consultavalores.databinding.FragmentDetalleMonedaBinding
+import cl.talentodigital.consultavalores.detalleMoneda.data.remote.HistorialMapper
+import cl.talentodigital.consultavalores.detalleMoneda.data.remote.RemoteHistorialRepository
+import cl.talentodigital.consultavalores.detalleMoneda.domain.ObtenerHistorialUseCase
+import cl.talentodigital.consultavalores.detalleMoneda.domain.model.Historial
+import cl.talentodigital.consultavalores.detalleMoneda.presentation.HistorialState
+import cl.talentodigital.consultavalores.detalleMoneda.presentation.HistorialViewModel
+import cl.talentodigital.consultavalores.detalleMoneda.presentation.HistorialViewModelFactory
+import cl.talentodigital.consultavalores.util.infoMonedaBundle
 import cl.talentodigital.consultavalores.menuListado.data.remote.ValoresMapper
 import cl.talentodigital.consultavalores.menuListado.data.remote.RemoteValoresRepository
 import cl.talentodigital.consultavalores.menuListado.domain.ObtenerValoresUseCase
-import cl.talentodigital.consultavalores.menuListado.domain.model.InfoMoneda
-import cl.talentodigital.consultavalores.menuListado.domain.model.Monedas
+import cl.talentodigital.consultavalores.menuListado.domain.model.DetalleValores
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresState
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModel
 import cl.talentodigital.consultavalores.menuListado.presentation.ValoresViewModelFactory
 import cl.talentodigital.consultavalores.network.api.RetrofitHandler
+import cl.talentodigital.consultavalores.util.CODIGO
 import cl.talentodigital.consultavalores.util.extentions.alert
 
 class DetalleMonedaFragment : Fragment(R.layout.fragment_detalle_moneda) {
 
     private lateinit var binding: FragmentDetalleMonedaBinding
-    private lateinit var adapter: DetalleAdapter
-    private lateinit var viewModel: ValoresViewModel
-    private lateinit var viewModelFactory: ValoresViewModelFactory
+    private lateinit var historialAdapter: HistorialAdapter
+    private lateinit var historialViewModel: HistorialViewModel
+    private lateinit var historialViewModelFactory: HistorialViewModelFactory
+    private lateinit var valoresViewModel: ValoresViewModel
+    private lateinit var valoresViewModelFactory: ValoresViewModelFactory
 
-    companion object{
-        const val CODIGO = "codigo"
-        const val NOMBRE = "nombre"
-        const val UNIDAD_DE_MEDIDA = "unidad de medida"
-        const val FECHA = "fecha"
-        const val VALOR = "valor"
-
-        fun infoMonedaBundle(infoMoneda: InfoMoneda) : Bundle {
-            val bundle = Bundle()
-            bundle.putString(CODIGO, infoMoneda.codigo)
-            bundle.putString(NOMBRE, infoMoneda.nombre)
-            bundle.putString(UNIDAD_DE_MEDIDA, infoMoneda.unidadMedida)
-            bundle.putString(FECHA, infoMoneda.fecha)
-            bundle.putFloat(VALOR, infoMoneda.valor?: 0.0f)
-            return bundle
-        }
-
-        fun infoMonedaBundle(bundle: Bundle) : InfoMoneda {
-            val codigo = bundle.getString(CODIGO)
-            val nombre = bundle.getString(NOMBRE)
-            val unidadDeMedida = bundle.getString(UNIDAD_DE_MEDIDA)
-            val fecha = bundle.getString(FECHA)
-            val valor = bundle.getFloat(VALOR)
-            return InfoMoneda(codigo, nombre, unidadDeMedida, fecha, valor)
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupBind(view)
         arguments?.let { safeBundle -> cargarMoneda(infoMonedaBundle(safeBundle)) }
         setupDependencies()
         setupLiveData()
+        setupRecyclerView()
     }
 
-    private fun setupBind(view: View) {
+    private fun setupBind(view : View) {
         binding = FragmentDetalleMonedaBinding.bind(view)
     }
 
-    private fun cargarMoneda(infoMonedaBundle: InfoMoneda) {
+    private fun cargarMoneda(detalleValoresBundle: DetalleValores) {
         binding.apply {
-            tvCodigo.text = infoMonedaBundle.codigo
-            tvNombre.text = infoMonedaBundle.nombre
-            tvUnidadMedida.text = infoMonedaBundle.unidadMedida
-            tvValor.text = infoMonedaBundle.valor.toString()
-            tvNombreMoneda.text = infoMonedaBundle.nombre
+            tvCodigo.text = detalleValoresBundle.codigo
+            tvNombre.text = detalleValoresBundle.nombre
+            tvUnidadMedida.text = detalleValoresBundle.unidadMedida
+            tvValor.text = detalleValoresBundle.valor.toString()
         }
     }
 
     private fun setupDependencies() {
-        viewModelFactory = ValoresViewModelFactory(
+        historialViewModelFactory = HistorialViewModelFactory(
+            ObtenerHistorialUseCase(
+                RemoteHistorialRepository(
+                    RetrofitHandler.getHistorialApi(),
+                    HistorialMapper()
+                )
+            )
+        )
+
+        historialViewModel = ViewModelProvider(this, historialViewModelFactory)
+            .get(HistorialViewModel::class.java)
+
+        valoresViewModelFactory = ValoresViewModelFactory(
             ObtenerValoresUseCase(
                 RemoteValoresRepository(
                     RetrofitHandler.getValoresApi(),
@@ -83,37 +80,85 @@ class DetalleMonedaFragment : Fragment(R.layout.fragment_detalle_moneda) {
             )
         )
 
-        viewModel = ViewModelProvider(this, viewModelFactory)
+        valoresViewModel = ViewModelProvider(this, valoresViewModelFactory)
             .get(ValoresViewModel::class.java)
     }
 
     private fun setupLiveData() {
-        viewModel.getLiveData().observe(
+        val tipoDeMoneda = arguments?.getString(CODIGO)?: ""
+        if (tipoDeMoneda.isNotEmpty()) {
+            historialViewModel.getLiveData().observe(
+                viewLifecycleOwner,
+                { state -> historialHandleState(state) }
+            )
+
+            historialViewModel.obtenerHistorial(tipoDeMoneda, binding.etAnio.text.toString())
+        }
+
+        valoresViewModel.getLiveData().observe(
             viewLifecycleOwner,
-            { state -> handleState(state) }
+            { state -> valoresHandleState(state) }
         )
 
-        viewModel.obtenerMonedas()
+        valoresViewModel.obtenerValores()
     }
 
-    private fun handleState(state: ValoresState?) {
+    private fun historialHandleState(state: HistorialState?) {
         when (state) {
-            is ValoresState.LoadingListaValores -> mostrarCargando()
-            is ValoresState.ObtencionDeValores -> state.result?.let { mostrarValores(it) }
-            is ValoresState.Error -> state.error?.let { mostrarError(it) }
+            is HistorialState.LoadingListaHistorial -> mostrarCargandoHistorial()
+            is HistorialState.ObtenerHistorialDeValores -> state.resultListadoHistorial?.let { mostrarHistorial(it) }
+            is HistorialState.Error -> state.error?.let { mostrarErrorHistorial(it) }
         }
     }
 
-    private fun mostrarCargando() {
+    private fun mostrarCargandoHistorial() {
+        alert("Cargando historial.")
+    }
+
+    private fun mostrarHistorial(listadoHistorial: Historial) {
+        historialAdapter = HistorialAdapter(listadoHistorial.serie)
+        binding.rvHistorialValores.adapter = historialAdapter
+    }
+
+    private fun mostrarErrorHistorial(error: Throwable) {
+        alert("Error: ${error.message}")
+    }
+
+    private fun valoresHandleState(state : ValoresState?) {
+        when (state) {
+            is ValoresState.CargandoListaDeValoresState -> mostrarCargandoValores()
+            is ValoresState.ObtenerDetalleDeUnValor -> state.resultDetalleValores?.let { mostrarDetalleValores(it) }
+            is ValoresState.Error -> state.error?.let { mostrarErrorValores(it) }
+        }
+    }
+
+    private fun mostrarCargandoValores() {
         alert("Cargando valores.")
     }
 
-    private fun mostrarValores(it: Monedas) {
-        adapter = DetalleAdapter(it.listadoDeMonedas)
-        binding.rvHistorialValores.adapter = adapter
+    private fun mostrarDetalleValores(detalle : DetalleValores) {
+        binding.apply {
+            tvCodigo.text = detalle.codigo
+            tvNombre.text = detalle.nombre
+            tvUnidadMedida.text = detalle.unidadMedida
+            tvValor.text = detalle.valor.toString()
+        }
     }
 
-    private fun mostrarError(error: Throwable) {
+    private fun mostrarErrorValores(error : Throwable) {
         alert("Error: ${error.message}")
+    }
+
+    private fun setupRecyclerView() {
+        binding.apply {
+            rvHistorialValores.setHasFixedSize(true)
+            rvHistorialValores.layoutManager = LinearLayoutManager(requireContext())
+            rvHistorialValores.addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
     }
 }
