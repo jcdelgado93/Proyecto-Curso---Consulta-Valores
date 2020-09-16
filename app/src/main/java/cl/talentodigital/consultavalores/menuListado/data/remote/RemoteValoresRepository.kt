@@ -8,7 +8,7 @@ class RemoteValoresRepository(
     private val valoresMapper : ValoresMapper
 ) : ValoresRepository {
 
-    override suspend fun obtenerValores(): Valores {
+    override suspend fun obtenerValoresApi(): Valores {
         val valores = apiRepository.obtenerMonedas()
         return valoresMapper.mapToEntityValores(valores)
     }

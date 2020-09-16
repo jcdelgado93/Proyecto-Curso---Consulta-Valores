@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/dp10"
-    android:layout_marginEnd="@dimen/dp10"
     android:orientation="vertical"
     tools:context=".menuListado.ui.MenuFragment">
 

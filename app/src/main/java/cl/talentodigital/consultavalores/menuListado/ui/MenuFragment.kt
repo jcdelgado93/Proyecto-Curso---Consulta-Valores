@@ -1,9 +1,6 @@
 package cl.talentodigital.consultavalores.menuListado.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +24,6 @@ import cl.talentodigital.consultavalores.util.extentions.alert
 class MenuFragment : Fragment(R.layout.fragment_menu) {
 
     private lateinit var binding: FragmentMenuBinding
-    private lateinit var dialog: CerrarSesionDialogFragment
     private lateinit var valoresAdapter: ValoresAdapter
     private lateinit var valoresViewModel: ValoresViewModel
     private lateinit var valoresViewModelFactory: ValoresViewModelFactory
@@ -39,33 +35,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         setupLiveData()
         setupRecyclerView()
         obtenerViewModel()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        val inflater: MenuInflater? = activity?.menuInflater
-        inflater?.inflate(R.menu.menu_actions, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_actualizar -> {
-                actualizar()
-                true
-            }
-            R.id.action_cerrar_sesion -> {
-                mostrarDialogoDeConfirmacion()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun actualizar() {
-        //TODO: aksngjbsdjnvkosadgsffgbadfhsdhsfgdscbfhkh
-    }
-
-    private fun mostrarDialogoDeConfirmacion() {
-        activity?.supportFragmentManager?.let { dialog.show(it, "String") }
     }
 
     private fun setupBind(view: View) {

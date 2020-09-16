@@ -49,6 +49,7 @@
     <string name="actualizar">Actualizar</string>
     <string name="ingrese_anio_de_consulta">Ingrese año de consulta</string>
     <string name="consultar">Consultar</string>
+    <string name="favoritos">Favoritos</string>
     <string-array name="tipos_monedas">
         <item>Pesos</item>
         <item>Dolar</item>

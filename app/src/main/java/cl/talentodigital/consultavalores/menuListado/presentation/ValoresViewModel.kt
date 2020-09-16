@@ -3,7 +3,10 @@ package cl.talentodigital.consultavalores.menuListado.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cl.talentodigital.consultavalores.menuListado.domain.EliminarFavoritosUseCase
+import cl.talentodigital.consultavalores.menuListado.domain.GuardarFavoritoUseCase
 import cl.talentodigital.consultavalores.menuListado.domain.ObtenerValoresUseCase
+import cl.talentodigital.consultavalores.menuListado.domain.model.DetalleValores
 import cl.talentodigital.consultavalores.menuListado.domain.model.Valores
 import kotlinx.coroutines.launch
 import java.lang.Exception
