@@ -60,7 +60,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             viewLifecycleOwner,
             { state -> handleState(state) }
         )
-
         valoresViewModel.obtenerValores()
     }
 
